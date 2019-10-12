@@ -3,7 +3,7 @@ import 'package:vector_math/vector_math_64.dart' as math;
 
 class RadialProgress extends StatefulWidget {
   final double goalCompleted;
-  bool isWalk;
+  final bool isWalk;
   RadialProgress({this.goalCompleted, this.isWalk});
 
   @override

@@ -16,8 +16,8 @@ class _HomePageState extends State<HomePage> {
   double stepcap = 4000;
   double calcount = 0;
   int calcap = 2500;
-  int inputcal = 50;
-
+  String foodcal = '0.0';
+  double inputcal = 0.0;
   @override
   void initState() {
     super.initState();
@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 RadialProgress(
                     goalCompleted:
-                        (inputcal - double.parse(_stepCountValue) * 0.04) /
+                        (double.parse(foodcal) - double.parse(_stepCountValue) * 0.04) /
                             calcap,
                             isWalk: false,),
               ],
@@ -116,9 +116,16 @@ class _HomePageState extends State<HomePage> {
         ),
         floatingActionButton: new FloatingActionButton(
           child: new Icon(Icons.center_focus_strong),
-          onPressed: () {
-            Navigator.push(
+          onPressed: () async {
+            foodcal = await Navigator.push(
                 context, MaterialPageRoute(builder: (context) => Scanner()));
+                setState(() {
+                 inputcal = inputcal+double.parse(foodcal); 
+                });
+                double test = 2500 - inputcal + double.parse(_stepCountValue)*0.04 ;
+                setState(() {
+                 calcount = test; 
+                });
           },
         ),
       ),
