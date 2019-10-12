@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobile_vision/flutter_mobile_vision.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class Scanner extends StatefulWidget {
   @override
@@ -16,6 +18,9 @@ class _ScannerState extends State<Scanner> {
   bool _showTextOcr = true;
   Size _previewOcr;
   List<OcrText> _textsOcr = [];
+  //Product
+  String name="Please go ahead and scan your item!";
+  String type,category,calory;
 
   @override
   void initState() {
@@ -124,5 +129,22 @@ class _ScannerState extends State<Scanner> {
       () => 
       _textsOcr = texts
       );
+         for(var items in _textsOcr)
+    getData(items.value);
+  }
+
+  Future<Null> getData(proname) async{
+      var response = await http.get(
+      Uri.encodeFull("http://192.168.137.1:8080/calories/"+proname),
+      headers: {"Accept": "application/json"});
+      print(response.body);
+      if(response.body != ""){
+        setState(() {
+        name=jsonDecode(response.body.split(',')[0].split(":")[1]);
+        category=jsonDecode(response.body.split(',')[1].split(":")[1]);
+        type=jsonDecode(response.body.split(',')[2].split(":")[1]);
+        calory=jsonDecode(response.body.split(',')[3].split(":")[1]).toString();
+      });
+      }
   }
 }
