@@ -85,7 +85,7 @@ class _HomePageState extends State<HomePage> {
                     goalCompleted: double.parse(_stepCountValue) / stepcap,
                     isWalk: true,),
                 Container(
-                  width: 50,
+                  width: (0.05)*MediaQuery.of(context).size.width,
                 ),
                 RadialProgress(
                     goalCompleted:

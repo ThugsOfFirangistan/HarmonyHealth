@@ -123,7 +123,7 @@ class _ScannerState extends State<Scanner> {
               elevation: 15,
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                height: 0.5 * MediaQuery.of(context).size.height,
+                height: 0.40 * MediaQuery.of(context).size.height,
                 child: Text(name),
               ))
         ],
