@@ -19,8 +19,8 @@ class _ScannerState extends State<Scanner> {
   Size _previewOcr;
   List<OcrText> _textsOcr = [];
   //Product
-  String name="Please go ahead and scan your item!";
-  String type,category,calory;
+  String name = "Please go ahead and scan your item!";
+  String type, category, calory;
 
   @override
   void initState() {
@@ -29,7 +29,6 @@ class _ScannerState extends State<Scanner> {
           _previewOcr = previewSizes[_cameraOcr].first;
         }));
   }
-
 
   List<DropdownMenuItem<int>> _getCameras() {
     List<DropdownMenuItem<int>> cameraItems = [];
@@ -48,8 +47,21 @@ class _ScannerState extends State<Scanner> {
   }
 
   Widget build(BuildContext context) {
-
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(
+            Icons.keyboard_arrow_left,
+            color: Colors.black,
+          ),
+          onPressed: () => Navigator.pop(context, false),
+        ),
+        title: const Text(
+          'Harmony Health',
+          style: TextStyle(color: Colors.black),
+        ),
+        backgroundColor: Colors.white,
+      ),
       body: Column(
         children: <Widget>[
           Padding(
@@ -100,8 +112,7 @@ class _ScannerState extends State<Scanner> {
                 width: MediaQuery.of(context).size.width,
                 height: 0.5 * MediaQuery.of(context).size.height,
                 child: Text(name),
-              )
-          )
+              ))
         ],
       ),
     );
@@ -125,26 +136,23 @@ class _ScannerState extends State<Scanner> {
     }
 
     if (!mounted) return;
-    setState(
-      () => 
-      _textsOcr = texts
-      );
-         for(var items in _textsOcr)
-    getData(items.value);
+    setState(() => _textsOcr = texts);
+    for (var items in _textsOcr) getData(items.value);
   }
 
-  Future<Null> getData(proname) async{
-      var response = await http.get(
-      Uri.encodeFull("http://192.168.137.1:8080/calories/"+proname),
-      headers: {"Accept": "application/json"});
-      print(response.body);
-      if(response.body != ""){
-        setState(() {
-        name=jsonDecode(response.body.split(',')[0].split(":")[1]);
-        category=jsonDecode(response.body.split(',')[1].split(":")[1]);
-        type=jsonDecode(response.body.split(',')[2].split(":")[1]);
-        calory=jsonDecode(response.body.split(',')[3].split(":")[1]).toString();
+  Future<Null> getData(proname) async {
+    var response = await http.get(
+        Uri.encodeFull("http://192.168.137.1:8080/calories/" + proname),
+        headers: {"Accept": "application/json"});
+    print(response.body);
+    if (response.body != "") {
+      setState(() {
+        name = jsonDecode(response.body.split(',')[0].split(":")[1]);
+        category = jsonDecode(response.body.split(',')[1].split(":")[1]);
+        type = jsonDecode(response.body.split(',')[2].split(":")[1]);
+        calory =
+            jsonDecode(response.body.split(',')[3].split(":")[1]).toString();
       });
-      }
+    }
   }
 }
