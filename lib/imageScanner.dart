@@ -20,8 +20,8 @@ class _ScannerState extends State<Scanner> {
   Size _previewOcr;
   List<OcrText> _textsOcr = [];
   //Product
-  String name = "Please go ahead and scan your item!";
-  String type, category, calory;
+  String cardbody = "Please go ahead and scan your item!";
+  String type, category, calory, name;
 
   @override
   void initState() {
@@ -39,7 +39,7 @@ class _ScannerState extends State<Scanner> {
   }
 
   bool myInterceptor(bool stopDefaultButtonEvent) {
-    Navigator.pop(context, calory);
+    Navigator.pop(context, '0.0');
     return true;
   }
 
@@ -67,7 +67,7 @@ class _ScannerState extends State<Scanner> {
             Icons.keyboard_arrow_left,
             color: Colors.black,
           ),
-          onPressed: () => Navigator.pop(context, calory),
+          onPressed: () => Navigator.pop(context, '0.0'),
         ),
         title: const Text(
           'Harmony Health',
@@ -119,13 +119,53 @@ class _ScannerState extends State<Scanner> {
           SizedBox(
             height: 20,
           ),
-          Card(
-              elevation: 15,
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: 0.40 * MediaQuery.of(context).size.height,
-                child: Text(name),
-              ))
+          Stack(
+            children: <Widget>[
+              Column(
+                children: <Widget>[
+                  DecoratedBox(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20.0),
+                          color: Colors.white),
+                      child: Container(
+                        width: (0.8) * MediaQuery.of(context).size.width,
+                        height: 0.43 * MediaQuery.of(context).size.height,
+                        child: Text(cardbody,
+                        style: TextStyle(
+                          fontSize: 25
+                        )),
+                      )),
+                  Container(height: 20.0)
+                ],
+              ),
+              Column(children: <Widget>[
+                Container(height: 0.4 * MediaQuery.of(context).size.height),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    FlatButton(
+                      shape: StadiumBorder(),
+                      color: Colors.red,
+                      child: Text("No",
+                          style: TextStyle(color: Colors.white, fontSize: 15)),
+                      onPressed: () => Navigator.pop(context, '0.0'),
+                    ),
+                    SizedBox(
+                      width: 25,
+                    ),
+                    FlatButton(
+                      shape: StadiumBorder(),
+                      color: Colors.blue,
+                      child: Text("Yes",
+                          style: TextStyle(color: Colors.white, fontSize: 15)),
+                      onPressed: () => Navigator.pop(context, calory),
+                    ),
+                  ],
+                )
+              ])
+            ],
+          )
         ],
       ),
     );
@@ -163,9 +203,17 @@ class _ScannerState extends State<Scanner> {
         name = jsonDecode(response.body.split(',')[0].split(":")[1]);
         category = jsonDecode(response.body.split(',')[1].split(":")[1]);
         type = jsonDecode(response.body.split(',')[2].split(":")[1]);
-        calory =
-            jsonDecode(response.body.split(',')[3].split(":")[1]).toString();
+        calory = jsonDecode(response.body.split(',')[3].split(":")[1]).toString();
+        cardbody = "The item you selected is " +
+            name.toUpperCase() +
+            ", it belongs to the category of " +
+            category +
+            ". It has " +
+            calory +
+            " calories per gram." +
+            "Please let us know that are you going to consume this product?";
       });
     }
+    print(cardbody);
   }
 }
