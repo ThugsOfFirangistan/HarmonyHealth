@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:harmony/charts.dart';
 import 'package:harmony/imageScanner.dart';
+import 'package:harmony/profile.dart';
 import 'package:pedometer/pedometer.dart';
 import 'dart:async';
 
@@ -56,6 +57,17 @@ class _HomePageState extends State<HomePage> {
     return new MaterialApp(
       home: new Scaffold(
         appBar: new AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.person, color: Colors.blue),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Profile(),
+                ),
+              );
+            },
+          ),
           title: const Text(
             'Harmony Health',
             style: TextStyle(color: Colors.black),
@@ -123,7 +135,8 @@ class _HomePageState extends State<HomePage> {
             setState(() {
               inputcal = inputcal + double.parse(foodcal);
             });
-            double netip = 2500 - inputcal - double.parse(_stepCountValue) * 0.04;
+            double netip =
+                2500 - inputcal - double.parse(_stepCountValue) * 0.04;
             setState(() {
               calcount = netip;
             });
