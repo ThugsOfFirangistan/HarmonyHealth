@@ -44,8 +44,7 @@ class _HomePageState extends State<HomePage> {
 
   void _onData(int stepCountValue) async {
     setState(() => _stepCountValue = "$stepCountValue");
-    setState(() =>
-     calcount = calcap-stepCountValue*0.04 );
+    setState(() => calcount = calcap - stepCountValue * 0.04);
   }
 
   void _onDone() => print("Finished pedometer tracking");
@@ -82,16 +81,18 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 RadialProgress(
-                    goalCompleted: double.parse(_stepCountValue) / stepcap,
-                    isWalk: true,),
+                  goalCompleted: double.parse(_stepCountValue) / stepcap,
+                  isWalk: true,
+                ),
                 Container(
-                  width: (0.05)*MediaQuery.of(context).size.width,
+                  width: (0.05) * MediaQuery.of(context).size.width,
                 ),
                 RadialProgress(
-                    goalCompleted:
-                        (double.parse(foodcal) - double.parse(_stepCountValue) * 0.04) /
-                            calcap,
-                            isWalk: false,),
+                  goalCompleted:
+                      (2500 - inputcal - double.parse(_stepCountValue) * 0.04) /
+                          calcap,
+                  isWalk: false,
+                ),
               ],
             ),
             Row(
@@ -107,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                   padding: EdgeInsets.only(top: 10),
                   alignment: Alignment.center,
                   width: 0.5 * MediaQuery.of(context).size.width,
-                  child: Text('Avl. cal for intake: $calcount',
+                  child: Text('Calories for day: $calcount',
                       style: TextStyle(fontSize: 15)),
                 )
               ],
@@ -119,13 +120,13 @@ class _HomePageState extends State<HomePage> {
           onPressed: () async {
             foodcal = await Navigator.push(
                 context, MaterialPageRoute(builder: (context) => Scanner()));
-                setState(() {
-                 inputcal = inputcal+double.parse(foodcal); 
-                });
-                double test = 2500 - inputcal + double.parse(_stepCountValue)*0.04 ;
-                setState(() {
-                 calcount = test; 
-                });
+            setState(() {
+              inputcal = inputcal + double.parse(foodcal);
+            });
+            double netip = 2500 - inputcal - double.parse(_stepCountValue) * 0.04;
+            setState(() {
+              calcount = netip;
+            });
           },
         ),
       ),
