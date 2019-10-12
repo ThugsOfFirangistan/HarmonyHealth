@@ -115,7 +115,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         floatingActionButton: new FloatingActionButton(
-          child: new Icon(Icons.scanner),
+          child: new Icon(Icons.center_focus_strong),
           onPressed: () {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => Scanner()));
