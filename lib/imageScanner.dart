@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobile_vision/flutter_mobile_vision.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:back_button_interceptor/back_button_interceptor.dart';
 
 class Scanner extends StatefulWidget {
   @override
@@ -28,6 +29,18 @@ class _ScannerState extends State<Scanner> {
     FlutterMobileVision.start().then((previewSizes) => setState(() {
           _previewOcr = previewSizes[_cameraOcr].first;
         }));
+    BackButtonInterceptor.add(myInterceptor);
+  }
+
+  @override
+  void dispose() {
+    BackButtonInterceptor.remove(myInterceptor);
+    super.dispose();
+  }
+
+  bool myInterceptor(bool stopDefaultButtonEvent) {
+    Navigator.pop(context, calory);
+    return true;
   }
 
   List<DropdownMenuItem<int>> _getCameras() {
