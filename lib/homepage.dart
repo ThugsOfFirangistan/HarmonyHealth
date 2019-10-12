@@ -19,8 +19,12 @@ class _HomePageState extends State<HomePage> {
           width: 100,
           height: 100,
           child: OutlineButton(
-            child: Text("Click  here"),
+            child: Text("Click here"),
+            onPressed: () => {
+              Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => Scanner()))
 
+            }
             ),
         )
       )
