@@ -54,7 +54,7 @@ class _ScannerState extends State<Scanner> {
             Icons.keyboard_arrow_left,
             color: Colors.black,
           ),
-          onPressed: () => Navigator.pop(context, false),
+          onPressed: () => Navigator.pop(context, calory),
         ),
         title: const Text(
           'Harmony Health',
