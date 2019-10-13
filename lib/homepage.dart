@@ -86,9 +86,9 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
-            Row(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -97,7 +97,14 @@ class _HomePageState extends State<HomePage> {
                   isWalk: true,
                 ),
                 Container(
-                  width: (0.05) * MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.only(top: 40),
+                  alignment: Alignment.center,
+                  width: 0.5 * MediaQuery.of(context).size.width,
+                  child: Text('Steps walked: $_stepCountValue',
+                      style: TextStyle(fontSize: 15)),
+                ),
+                Container(
+                  height: (0.2) * MediaQuery.of(context).size.width,
                 ),
                 RadialProgress(
                   goalCompleted:
@@ -105,19 +112,8 @@ class _HomePageState extends State<HomePage> {
                           calcap,
                   isWalk: false,
                 ),
-              ],
-            ),
-            Row(
-              children: <Widget>[
                 Container(
-                  padding: EdgeInsets.only(top: 20),
-                  alignment: Alignment.center,
-                  width: 0.5 * MediaQuery.of(context).size.width,
-                  child: Text('Steps walked: $_stepCountValue',
-                      style: TextStyle(fontSize: 15)),
-                ),
-                Container(
-                  padding: EdgeInsets.only(top: 10),
+                  padding: EdgeInsets.only(top: 40),
                   alignment: Alignment.center,
                   width: 0.5 * MediaQuery.of(context).size.width,
                   child: Text('Calories for day: $calcount',
