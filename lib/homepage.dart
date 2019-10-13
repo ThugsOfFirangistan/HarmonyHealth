@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   Pedometer _pedometer;
   StreamSubscription<int> _subscription;
-  String _stepCountValue = 'unknown';
+  String _stepCountValue = '0.0';
   double stepcap = 4000;
   double calcount = 0;
   int calcap = 2500;
