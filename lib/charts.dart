@@ -48,8 +48,8 @@ class _RadialProgressState extends State<RadialProgress>
       child: Stack(
         children: <Widget>[
           Container(
-        height: 150.0,
-        width: 150.0,
+        height: 200.0,
+        width: 200.0,
         padding: EdgeInsets.symmetric(vertical: 40.0),
         child: AnimatedOpacity(
           opacity: progressDegrees > 30 ? 1.0 : 0.0,
@@ -57,21 +57,22 @@ class _RadialProgressState extends State<RadialProgress>
         ),
       ),
       Container(
-        height: 150.0,
-        width: 150.0,
+        height: 200.0,
+        width: 200.0,
         child: widget.isWalk == true ? Icon(Icons.directions_walk, color: Colors.blue, size: 60) : Icon(Icons.fastfood, color: Colors.blue, size: 60 ,)
       )
         ],
       ),
-      painter: RadialPainter(progressDegrees),
+      painter: RadialPainter(progressDegrees, widget.isWalk),
     );
   }
 }
 
 class RadialPainter extends CustomPainter {
   double progressInDegrees;
+  bool isReverse;
 
-  RadialPainter(this.progressInDegrees);
+  RadialPainter(this.progressInDegrees, this.isReverse);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -83,10 +84,9 @@ class RadialPainter extends CustomPainter {
 
     Offset center = Offset(size.width / 2, size.height / 2);
     canvas.drawCircle(center, size.width / 2, paint);
-
     Paint progressPaint = Paint()
       ..shader = LinearGradient(
-              colors: [Colors.red, Colors.lightBlue, Colors.blue])
+              colors: isReverse == false ? [Colors.lightBlue, Colors.blue, Colors.red, Colors.red] : [Colors.red, Colors.lightBlue, Colors.blue])
           .createShader(Rect.fromCircle(center: center, radius: size.width / 2))
       ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.stroke
