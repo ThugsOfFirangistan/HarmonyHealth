@@ -104,7 +104,7 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(fontSize: 15)),
                 ),
                 Container(
-                  height: (0.2) * MediaQuery.of(context).size.width,
+                  height: (0.1) * MediaQuery.of(context).size.width,
                 ),
                 RadialProgress(
                   goalCompleted:
