@@ -13,3 +13,8 @@ flutter pub get
 ```bash
 flutter build apk
 ```
+
+![ScreenShot](https://raw.githubusercontent.com/devabhixda/HarmonyHealth/master/screenshots/home.jpg)
+![ScreenShot](https://raw.githubusercontent.com/devabhixda/HarmonyHealth/master/screenshots/profile.jpg)
+![ScreenShot](https://raw.githubusercontent.com/devabhixda/HarmonyHealth/master/screenshots/scan.jpg)
+![ScreenShot](https://raw.githubusercontent.com/devabhixda/HarmonyHealth/master/screenshots/result.jpg)
