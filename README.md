@@ -14,7 +14,7 @@ flutter pub get
 flutter build apk
 ```
 
-![ScreenShot](https://raw.githubusercontent.com/devabhixda/HarmonyHealth/master/screenshots/home.jpg)
-![ScreenShot](https://raw.githubusercontent.com/devabhixda/HarmonyHealth/master/screenshots/profile.jpg)
-![ScreenShot](https://raw.githubusercontent.com/devabhixda/HarmonyHealth/master/screenshots/scan.jpg)
-![ScreenShot](https://raw.githubusercontent.com/devabhixda/HarmonyHealth/master/screenshots/result.jpg)
+![ScreenShot](https://raw.githubusercontent.com/ThugsOfFirangistan/HarmonyHealth/master/screenshots/home.jpg)
+![ScreenShot](https://raw.githubusercontent.com/ThugsOfFirangistan/HarmonyHealth/master/screenshots/profile.jpg)
+![ScreenShot](https://raw.githubusercontent.com/ThugsOfFirangistan/HarmonyHealth/master/screenshots/scan.jpg)
+![ScreenShot](https://raw.githubusercontent.com/ThugsOfFirangistan/HarmonyHealth/master/screenshots/result.jpg)
